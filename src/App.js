@@ -41,6 +41,7 @@ function App() {
                 <button
                   key={index}
                   className="answer-btn"
+                  onClick={() => checkAnswer(answer === correct_answer)}
                   dangerouslySetInnerHTML={{ __html: answer }}
                 ></button>
               );
