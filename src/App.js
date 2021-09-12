@@ -23,7 +23,7 @@ function App() {
     return <Loading />;
   }
 
-  return <div>123</div>;
+  return <div>quiz app</div>;
 }
 
 export default App;
