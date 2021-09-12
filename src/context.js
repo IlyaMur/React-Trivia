@@ -9,9 +9,9 @@ const table = {
 
 const API_ENDPOINT = "https://opentdb.com/api.php?";
 
-const url =
-  "https://opentdb.com/api.php?amount=10&category=18&difficulty=medium";
-
+const url = "";
+const tempUrl =
+  "https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple";
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
@@ -21,11 +21,24 @@ const AppProvider = ({ children }) => {
   const [index, setIndex] = useState(0);
   const [correct, setCorrect] = useState(0);
   const [error, setError] = useState(false);
+  const [quiz, setQuiz] = useState({
+    amount: 10,
+    category: "sports",
+    difficulty: "easy",
+  });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <AppContext.Provider
-      value={(waiting, questions, loading, index, correct, error, isModalOpen)}
+      value={{
+        waiting,
+        questions,
+        loading,
+        index,
+        correct,
+        error,
+        isModalOpen,
+      }}
     >
       {children}
     </AppContext.Provider>
