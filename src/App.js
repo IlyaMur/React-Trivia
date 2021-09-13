@@ -56,7 +56,7 @@ function App() {
           </div>
         </article>
         <button className="next-question" onClick={nextQuestion}>
-          next question
+          next
         </button>
       </section>
     </main>
