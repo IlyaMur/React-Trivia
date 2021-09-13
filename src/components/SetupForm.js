@@ -1,8 +1,9 @@
 import React from "react";
-import { useGlobalContext } from "./context";
+import { useGlobalContext } from "../context";
 
 const SetupForm = () => {
-  const { quiz, handleChange, handleSubmit, error } = useGlobalContext();
+  const { quiz, handleChange, handleSubmit, error, categoryTable } =
+    useGlobalContext();
   return (
     <main>
       <section className="quiz quiz-small">
@@ -30,9 +31,12 @@ const SetupForm = () => {
               value={quiz.category}
               onChange={handleChange}
             >
-              <option value="sports">sports</option>
-              <option value="history">history</option>
-              <option value="politics">politics</option>
+              {Object.keys(categoryTable).map((category, i) => (
+                <option key={i} value={category}>
+                  {category}
+                </option>
+              ))}
+              )
             </select>
           </div>
           <div className="form-control">

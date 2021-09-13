@@ -1,9 +1,9 @@
 import React from "react";
 import { useGlobalContext } from "./context";
 
-import SetupForm from "./SetupForm";
-import Loading from "./Loading";
-import Modal from "./Modal";
+import SetupForm from "./components/SetupForm";
+import Loading from "./components/Loading";
+import Modal from "./components/Modal";
 
 function App() {
   const {
@@ -24,12 +24,19 @@ function App() {
   }
 
   const { question, incorrect_answers, correct_answer } = questions[index];
-  const answers = [...incorrect_answers, correct_answer];
+  const answers = [...incorrect_answers];
+  const tempIndex = Math.floor(Math.random() * 4);
+  if (tempIndex === 3) {
+    answers.push(correct_answer);
+  } else {
+    answers.push(answers[tempIndex]);
+    answers[tempIndex] = correct_answer;
+  }
 
   return (
     <main>
       <Modal />
-      <section className="Quiz">
+      <section className="quiz">
         <p className="correct-answers">
           correct answers: {correct}/{index}
         </p>
@@ -41,7 +48,9 @@ function App() {
                 <button
                   key={index}
                   className="answer-btn"
-                  onClick={() => checkAnswer(answer === correct_answer)}
+                  onClick={() =>
+                    checkAnswer(questions[index] === correct_answer)
+                  }
                   dangerouslySetInnerHTML={{ __html: answer }}
                 ></button>
               );

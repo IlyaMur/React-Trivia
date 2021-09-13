@@ -1,17 +1,9 @@
 import axios from "axios";
-import React, { useState, useContext, useEffect } from "react";
-
-const table = {
-  sports: 21,
-  history: 23,
-  politics: 24,
-};
+import React, { useState, useContext } from "react";
+import { categoryTable } from "./config";
 
 const API_ENDPOINT = "https://opentdb.com/api.php?";
 
-const url = "";
-const tempUrl =
-  "https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple";
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
@@ -61,7 +53,6 @@ const AppProvider = ({ children }) => {
   };
 
   const checkAnswer = (value) => {
-    console.log(value);
     if (value) {
       setCorrect((oldState) => oldState + 1);
     }
@@ -88,7 +79,7 @@ const AppProvider = ({ children }) => {
     e.preventDefault();
     const { amount, category, difficulty } = quiz;
 
-    const url = `${API_ENDPOINT}amount=${amount}&difficilty=${difficulty}&category=${table[category]}&type=multiple`;
+    const url = `${API_ENDPOINT}amount=${amount}&difficilty=${difficulty}&category=${categoryTable[category]}&type=multiple`;
 
     fetchQuestions(url);
   };
@@ -108,6 +99,7 @@ const AppProvider = ({ children }) => {
         handleChange,
         handleSubmit,
         quiz,
+        categoryTable,
       }}
     >
       {children}
